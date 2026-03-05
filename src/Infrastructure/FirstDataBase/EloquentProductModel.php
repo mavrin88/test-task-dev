@@ -3,6 +3,7 @@
 namespace TestTask\Infrastructure\FirstDataBase;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -30,5 +31,8 @@ final class EloquentProductModel extends Model
         return $lock ? parent::query()->lockForUpdate() : parent::query();
     }
 
-    // TODO Ваш код...
+    public function orders(): HasMany
+    {
+        return $this->hasMany(EloquentOrderModel::class, 'product_id', 'id');
+    }
 }

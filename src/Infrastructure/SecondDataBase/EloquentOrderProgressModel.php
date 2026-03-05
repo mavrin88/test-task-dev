@@ -3,7 +3,9 @@
 namespace TestTask\Infrastructure\SecondDataBase;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use TestTask\Infrastructure\FirstDataBase\EloquentOrderModel;
 
 /**
  * Столбцы таблицы OrderProgress
@@ -32,5 +34,8 @@ final class EloquentOrderProgressModel extends Model
         return $lock ? parent::query()->lockForUpdate() : parent::query();
     }
 
-    // TODO Ваш код...
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(EloquentOrderModel::class, 'order_id', 'id');
+    }
 }

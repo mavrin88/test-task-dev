@@ -2,7 +2,7 @@
 
 namespace TestTask\Application\VO;
 
-use Sys\Toolkit\VO\BaseSorting;
+use TestTask\System\VO\BaseSorting;
 
 final readonly class OrderSortingParams extends BaseSorting
 {
@@ -16,5 +16,16 @@ final readonly class OrderSortingParams extends BaseSorting
         self::TITLE,
         self::DEADLINE_AT,
         self::CREATED_AT,
+        self::PRODUCTION_PROGRESS,
     ];
+
+    public function getField(): string
+    {
+        return $this->field;
+    }
+
+    public function getDirection(): string
+    {
+        return $this->direction;
+    }
 }
